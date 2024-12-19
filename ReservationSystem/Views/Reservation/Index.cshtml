@@ -1,0 +1,54 @@
+@model IEnumerable<ReservationSystem.Models.Reservation>
+
+<h2 class="my-4">Gestión de Reservas</h2>
+
+<a href="@Url.Action("Create", "Reservation")" class="btn btn-primary mb-3">Nueva Reserva</a>
+
+<form method="get" action="@Url.Action("Index", "Reservation")">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="RoomName">Nombre de la Sala</label>
+            <input type="text" name="RoomName" id="RoomName" class="form-control" value="@Request.QueryString["RoomName"]" placeholder="Ingrese el nombre de la sala">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="StartDate">Fecha Inicio</label>
+            <input type="date" name="StartDate" id="StartDate" class="form-control" value="@Request.QueryString["StartDate"]">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="EndDate">Fecha Fin</label>
+            <input type="date" name="EndDate" id="EndDate" class="form-control" value="@Request.QueryString["EndDate"]">
+        </div>
+        <div class="form-group col-md-2 align-self-end">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Sala</th>
+            <th>Fecha</th>
+            <th>Duración</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Id</td>
+                <td>@reserva.ReservedBy</td>
+                <td>@reserva.Room.Name</td>
+                <td>@reserva.ReservaDate.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@reserva.Duration minutos</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Reservation", new { id = reserva.Id })" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="@Url.Action("Delete", "Reservation", new { id = reserva.Id })" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

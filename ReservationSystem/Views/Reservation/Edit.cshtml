@@ -1,0 +1,35 @@
+@model ReservationSystem.Models.Reservation
+
+<h2 class="my-4">Editar Reserva</h2>
+
+@using (Html.BeginForm("Edit", "Reservation", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReservedBy, "Nombre del Cliente")
+        @Html.TextBoxFor(m => m.ReservedBy, new { @class = "form-control", placeholder = "Ingresa el nombre del cliente" })
+        @Html.ValidationMessageFor(m => m.ReservedBy, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RoomId, "Sala")
+        @Html.DropDownListFor(m => m.RoomId, (SelectList)ViewBag.Rooms, "Selecciona una sala", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.RoomId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ReservaDate, "Fecha de Reserva")
+        @Html.TextBoxFor(m => m.ReservaDate, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+        @Html.ValidationMessageFor(m => m.ReservaDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Duration, "Duración (en minutos)")
+        @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", placeholder = "Duración de la reserva en minutos" })
+        @Html.ValidationMessageFor(m => m.Duration, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Editar</button>
+    <a href="@Url.Action("Index", "Reservation")" class="btn btn-secondary">Cancelar</a>
+}

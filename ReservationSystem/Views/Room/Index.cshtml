@@ -1,0 +1,30 @@
+@model IEnumerable<ReservationSystem.Models.Room>
+
+<h2 class="my-4">Gestión de Salas</h2>
+
+<a href="@Url.Action("Create", "Room")" class="btn btn-primary mb-3">Nueva Sala</a>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sala in Model)
+        {
+            <tr>
+                <td>@sala.Id</td>
+                <td>@sala.Name</td>
+                <td>@sala.Capacity personas</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Room", new { id = sala.Id })" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="@Url.Action("Delete", "Room", new { id = sala.Id })" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+@model ReservationSystem.Models.Room
+
+<h2 class="my-4">Nueva Sala</h2>
+
+@using (Html.BeginForm("Create", "Room", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, "Nombre de la Sala")
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Ingresa el nombre de la sala" })
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Capacity, "Capacidad")
+        @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control", placeholder = "Capacidad de la sala" })
+        @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Availability, "Disponibilidad")
+        <div>
+            @Html.CheckBoxFor(m => m.Availability)
+            <span>Disponible</span>
+        </div>
+        @Html.ValidationMessageFor(m => m.Availability, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="@Url.Action("Index", "Room")" class="btn btn-secondary">Cancelar</a>
+}

@@ -1,0 +1,33 @@
+# Archivos de compilación
+bin/
+obj/
+
+# Archivos temporales de Visual Studio
+.vs/
+*.user
+*.suo
+*.tmp
+*.userosscache
+*.rsuser
+
+# Paquetes NuGet
+packages/
+*.nupkg
+project.lock.json
+
+# Archivos de configuración locales
+appsettings*.json
+secret.json
+
+# Configuración de Visual Studio Code
+.vscode/
+
+# Logs y reportes
+*.log
+*.tlog
+*.log2
+*.cache
+
+# Configuración de sistema operativo
+Thumbs.db
+.DS_Store
